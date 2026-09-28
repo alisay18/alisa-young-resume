@@ -433,11 +433,11 @@ h1 {
   display: block;
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(40px, 8.4vw, 150px);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(26px, 3.4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-decoration: none;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
   overflow-wrap: anywhere;
 }
 
