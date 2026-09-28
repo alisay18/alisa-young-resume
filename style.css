@@ -45,7 +45,6 @@ h1, h2, h3, h4, p, ol, ul, dl, dd, figure { margin: 0; }
 .meta-row,
 .chapter-title,
 .case-where,
-.case-cols h4,
 .note,
 .staff-years,
 .role,
@@ -271,36 +270,103 @@ h1 {
 
 .case-where { color: var(--grey); }
 
-.case-cols {
+/* Each case is drawn as a route: stops on a single rule, the last one
+   filled in, followed by the one number that mattered. */
+.route {
+  list-style: none;
+  margin: 0 0 0 calc(3.2em + 12px);
+  padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr;
-  column-gap: var(--gutter);
-  margin-left: calc(3.2em + 12px);
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
 }
 
-.case-cols h4 {
-  margin-bottom: 10px;
+.route::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: calc(20% - 11px);
+  top: 5px;
+  height: 1px;
+  background: var(--ink);
+  transform-origin: left;
+}
+
+.route li {
+  position: relative;
+  padding: 26px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.route li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+}
+
+.route li:last-child::before { background: var(--ink); }
+
+.route .tool {
+  font-family: var(--label);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--grey);
 }
 
-.case-cols p {
+.route .step {
   font-size: 17px;
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
-.chain {
-  margin: 36px 0 0 calc(3.2em + 12px);
+.outcome {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  column-gap: var(--gutter);
+  margin: 44px 0 0 calc(3.2em + 12px);
+}
+
+.outcome-num {
   font-family: var(--display);
-  font-style: italic;
-  font-size: 20px;
+  font-weight: 300;
+  font-size: clamp(56px, 6vw, 96px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+.outcome p {
+  max-width: 44ch;
+  font-size: 17px;
   color: var(--grey);
 }
 
-.chain i {
-  font-style: normal;
-  padding: 0 0.35em;
-  color: var(--ink);
+/* Opted in by script.js: the rule draws across and the stops appear in turn */
+.animate .route::before {
+  transform: scaleX(0);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+.animate .route li {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.animate .case.in .route::before { transform: scaleX(1); }
+.animate .case.in .route li { opacity: 1; }
+.animate .case.in .route li:nth-child(2) { transition-delay: 0.2s; }
+.animate .case.in .route li:nth-child(3) { transition-delay: 0.4s; }
+.animate .case.in .route li:nth-child(4) { transition-delay: 0.6s; }
+.animate .case.in .route li:nth-child(5) { transition-delay: 0.8s; }
 
 /* ---------- Before this ---------- */
 .lead {
@@ -462,8 +528,7 @@ a:focus-visible {
 @media (max-width: 1000px) {
   .chapter-title { grid-column: 1 / -1; position: static; margin-bottom: 40px; }
   .chapter > :not(.chapter-title) { grid-column: 1 / -1; }
-  .case-cols { grid-template-columns: 1fr 1fr; row-gap: 24px; }
-  .case-cols > div:nth-child(2) { grid-row: span 2; }
+  .route, .outcome { margin-left: 0; }
 }
 
 /* ---------- Phone ---------- */
@@ -498,9 +563,14 @@ a:focus-visible {
 
   .case-head { grid-template-columns: 2.2em 1fr; }
   .case-where { grid-column: 2; margin-top: 8px; }
-  .case-cols { grid-template-columns: 1fr; margin-left: 0; }
-  .case-cols > div:nth-child(2) { grid-row: auto; }
-  .chain { margin-left: 0; font-size: 18px; }
+  /* Route turns vertical on phones */
+  .route { grid-template-columns: 1fr; row-gap: 18px; }
+  .route::before { left: 5px; right: auto; top: 6px; bottom: 36px; width: 1px; height: auto; transform-origin: top; }
+  .animate .route::before { transform: scaleY(0); }
+  .animate .case.in .route::before { transform: scaleY(1); }
+  .route li { padding: 0 0 0 28px; }
+  .route li::before { top: 4px; }
+  .outcome { grid-template-columns: 1fr; row-gap: 12px; margin-top: 32px; }
 
   .staff-years span:nth-child(even) { visibility: hidden; }
   .credits { grid-template-columns: 1fr; }

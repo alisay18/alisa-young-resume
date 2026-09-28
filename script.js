@@ -1,6 +1,7 @@
 // Results figures count up from zero the first time they scroll into view,
-// and each benchmark scale draws its black rule alongside. Without JS, or
-// with reduced motion, the final numbers simply show as written.
+// each benchmark scale draws its black rule alongside, and the Selected work
+// routes draw in stop by stop. Without JS, or with reduced motion, everything
+// simply shows as written.
 (function () {
     var figures = document.querySelectorAll('.figure');
     if (!('IntersectionObserver' in window)) return;
@@ -32,10 +33,12 @@
         entries.forEach(function (e) {
             if (!e.isIntersecting) return;
             e.target.classList.add('in');
-            countUp(e.target.querySelector('.big'));
+            var big = e.target.querySelector('.big');
+            if (big) countUp(big);
             io.unobserve(e.target);
         });
     }, { threshold: 0.4 });
 
     figures.forEach(function (f) { io.observe(f); });
+    document.querySelectorAll('.case').forEach(function (c) { io.observe(c); });
 })();
