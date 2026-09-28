@@ -304,7 +304,7 @@ h1 {
   margin-bottom: 72px;
 }
 
-/* Timeline drawn like a musical staff: five hairlines, one per role */
+/* Timeline drawn like a musical staff: one hairline per role */
 .staff {
   --months: 60;
   margin-bottom: 80px;
