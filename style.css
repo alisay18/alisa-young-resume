@@ -75,9 +75,12 @@ h1, h2, h3, h4, p, ol, ul, dl, dd, figure { margin: 0; }
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  /* The panel spans both rows; give its extra height to the lower row so
+     the intro stays tucked under the name */
+  grid-template-rows: min-content 1fr;
   column-gap: var(--gutter);
   padding-top: 4vw;
-  min-height: min(92vh, 980px);
+  padding-bottom: 72px;
 }
 
 /* The name sits over the gradient panel; difference blending keeps it
@@ -117,8 +120,8 @@ h1 {
 .intro {
   grid-column: 1 / 6;
   grid-row: 2;
-  align-self: end;
-  padding-bottom: 8px;
+  align-self: start;
+  margin-top: 36px;
 }
 
 .intro p {
