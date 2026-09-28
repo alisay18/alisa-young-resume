@@ -330,10 +330,9 @@ h1 {
 
 .outcome {
   display: grid;
-  /* Fixed figure column so every case's sentence starts on the same line */
-  grid-template-columns: 12.5rem 1fr;
+  grid-template-columns: auto 1fr;
   align-items: first baseline;
-  column-gap: var(--gutter);
+  column-gap: 20px;
   margin: 40px 0 0 calc(3.2em + 12px);
 }
 
