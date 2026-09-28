@@ -330,18 +330,20 @@ h1 {
 
 .outcome {
   display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: end;
+  /* Fixed figure column so every case's sentence starts on the same line */
+  grid-template-columns: 12.5rem 1fr;
+  align-items: first baseline;
   column-gap: var(--gutter);
-  margin: 44px 0 0 calc(3.2em + 12px);
+  margin: 40px 0 0 calc(3.2em + 12px);
 }
 
 .outcome-num {
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(56px, 6vw, 96px);
-  line-height: 0.85;
-  letter-spacing: -0.04em;
+  /* Kept below the case title (h3) so the title leads */
+  font-size: clamp(26px, 2.6vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .outcome p {
