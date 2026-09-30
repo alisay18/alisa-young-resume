@@ -95,6 +95,11 @@ h1 {
   font-size: clamp(88px, 17.5vw, 300px);
   line-height: 0.82;
   letter-spacing: -0.045em;
+  /* The tight line-height lets the l and the dot of the i rise above the
+     box, and the blended layer is clipped to that box. Pad the top so the
+     box holds the ascenders, and pull it back up so the layout is unchanged. */
+  padding-top: 0.16em;
+  margin-top: -0.16em;
   color: #fff;
   mix-blend-mode: difference;
   pointer-events: none;
