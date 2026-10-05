@@ -374,6 +374,72 @@ h1 {
 .animate .case.in .route li:nth-child(4) { transition-delay: 0.6s; }
 .animate .case.in .route li:nth-child(5) { transition-delay: 0.8s; }
 
+/* ---------- Work samples ---------- */
+.samples {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 56px var(--gutter);
+}
+
+.sample-shot {
+  display: block;
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+/* Shown in greyscale to sit with the page; full color on hover */
+.sample-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1);
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.sample-shot:hover img,
+.sample-shot:focus-visible img {
+  filter: none;
+  transform: scale(1.02);
+}
+
+.sample-text {
+  margin-top: 18px;
+}
+
+.sample-meta {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.sample h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+.sample p {
+  font-size: 17px;
+  color: var(--grey);
+  max-width: 44ch;
+  margin-bottom: 12px;
+}
+
+.sample-text a {
+  font-family: var(--label);
+  font-size: 13px;
+}
+
 /* ---------- Before this ---------- */
 .lead {
   font-family: var(--display);
@@ -556,6 +622,7 @@ a:focus-visible {
 
   .staff-years span:nth-child(even) { visibility: hidden; }
   .credits { grid-template-columns: 1fr; }
+  .samples { grid-template-columns: 1fr; }
   .index div { grid-template-columns: 1fr; row-gap: 4px; }
   .colophon-row span:first-child { margin-right: 0; width: 100%; }
 }
