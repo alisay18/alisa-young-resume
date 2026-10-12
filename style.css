@@ -428,6 +428,12 @@ h1 {
   transition: filter 0.4s ease, transform 0.6s ease;
 }
 
+/* Vertical video stills sit centered at full height, like a phone screen */
+.sample-cover.vertical img {
+  width: auto;
+  height: 100%;
+}
+
 .sample-cover:hover img {
   filter: none;
   transform: scale(1.02);
