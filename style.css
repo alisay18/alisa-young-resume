@@ -408,40 +408,29 @@ h1 {
   margin-top: 18px;
 }
 
-/* Typographic cover for samples without a screenshot; same gradient as the masthead panel */
+/* Image cover on a dark ground, for wide captures that don't fill 16:10.
+   Same greyscale-to-color hover as the screenshot samples. */
 .sample-cover {
   aspect-ratio: 16 / 10;
   display: flex;
-  align-items: flex-end;
-  padding: 28px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--ink);
-  background: linear-gradient(172deg, #050505 0%, #1c1c1c 38%, #5a5a5a 72%, #a9a9a9 100%);
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 10px;
-  color: #fff;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
+  background: #0b0b0b;
+  overflow: hidden;
 }
 
-a.sample-cover:hover { opacity: 0.88; }
-
-.cover-num {
-  font-family: var(--display);
-  font-weight: 300;
-  font-size: clamp(48px, 5vw, 80px);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+.sample-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1);
+  transition: filter 0.4s ease, transform 0.6s ease;
 }
 
-.cover-note {
-  font-family: var(--label);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.75;
+.sample-cover:hover img {
+  filter: none;
+  transform: scale(1.02);
 }
 
 .sample-meta {
