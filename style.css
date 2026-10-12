@@ -379,7 +379,8 @@ h1 {
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* minmax(0, 1fr) so a tall cover image can't widen its column */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 56px var(--gutter);
 }
 
@@ -431,7 +432,14 @@ h1 {
 /* Vertical video stills sit centered at full height, like a phone screen */
 .sample-cover.vertical img {
   width: auto;
+  max-width: 100%;
   height: 100%;
+  object-fit: contain;
+}
+
+/* Light ground for covers that are mostly white, like document pages */
+.sample-cover.light {
+  background: #f2f2f2;
 }
 
 .sample-cover:hover img {
