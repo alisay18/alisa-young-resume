@@ -421,7 +421,11 @@ h1 {
   justify-content: flex-end;
   gap: 10px;
   color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
 }
+
+a.sample-cover:hover { opacity: 0.88; }
 
 .cover-num {
   font-family: var(--display);
